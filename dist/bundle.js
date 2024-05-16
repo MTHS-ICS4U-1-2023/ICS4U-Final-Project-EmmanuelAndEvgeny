@@ -94,7 +94,7 @@ class Game extends phaser_minExports.Scene {
         this.camera.setBackgroundColor(0x00ff00);
         this.background = this.add.image(512, 384, 'background');
         this.background.setAlpha(0.5);
-        this.msg_text = this.add.text(512, 384, 'Hello, World!', {
+        this.msg_text = this.add.text(512, 384, 'Hello, World! x 2', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
