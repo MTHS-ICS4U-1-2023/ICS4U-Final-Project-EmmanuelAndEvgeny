@@ -28,4 +28,3 @@ const config: Types.Core.GameConfig = {
 };
 
 export default new Game(config);
- 
