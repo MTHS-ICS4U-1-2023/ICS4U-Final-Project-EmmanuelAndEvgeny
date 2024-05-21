@@ -1,3 +1,10 @@
+/**
+  * This is the Game.ts code that runs
+  * By: Evgeny Vovk
+  * Version: 1.0
+  * Since: 2024-05-21
+  */
+
 import { Scene } from 'phaser';
 
 export class Game extends Scene
