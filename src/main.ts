@@ -1,3 +1,10 @@
+/**
+  * This is the main code that runs
+  * By: Evgeny Vovk
+  * Version: 1.0
+  * Since: 2024-05-21
+  */
+
 import { Boot } from './scenes/Boot';
 import { Game as MainGame } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
