@@ -1,5 +1,5 @@
 /**
-  * This is the mainMenu.ts code that runs
+  * This is the MainMenu.ts code that runs
   * By: Evgeny Vovk
   * Version: 1.0
   * Since: 2024-05-21
@@ -9,7 +9,7 @@ import { Scene, GameObjects } from 'phaser';
 
 export class MainMenu extends Scene
 {
-    background: GameObjects.Image;
+    gray_background: GameObjects.Image;
     logo: GameObjects.Image;
     title: GameObjects.Text;
 
@@ -20,7 +20,9 @@ export class MainMenu extends Scene
 
     create ()
     {
-        this.background = this.add.image(512, 384, 'background');
+        this.gray_background = this.add.sprite(0, 0, "gray_background");
+        this.gray_background.x = 1920 / 2
+        this.gray_background.y = 1080 / 2
 
         this.logo = this.add.image(512, 300, 'logo');
 
