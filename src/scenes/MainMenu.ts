@@ -20,9 +20,13 @@ export class MainMenu extends Scene
 
     create ()
     {
-        this.gray_background = this.add.sprite(0, 0, "gray_background");
-        this.gray_background.x = 1920 / 2
-        this.gray_background.y = 1080 / 2
+        this.gray_background = this.add.tileSprite(
+            1920,
+            540,
+            3840,
+            1080,
+            "gray_background"
+          )
 
         this.logo = this.add.image(512, 300, 'logo');
 
@@ -37,5 +41,8 @@ export class MainMenu extends Scene
             this.scene.start('Game');
 
         });
+    }
+    update(): void {
+        this.gray_background.tilePositionX += 5
     }
 }
