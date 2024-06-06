@@ -100,10 +100,21 @@ class Game extends phaser_minExports.Scene {
             writable: true,
             value: void 0
         });
+        Object.defineProperty(this, "doge", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
     }
-    create() {
+    create(data) {
+        this.game.sound.stopAll();
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
+        //create doge
+        this.player = this.physics.add.sprite(500, 500, "doge");
+        this.player.body.collideWorldBounds = true;
+        this.player.setSize(0.5, 0.5);
         this.background = this.add.image(512, 384, 'background');
         this.background.setAlpha(0.5);
         this.msg_text = this.add.text(512, 384, 'Hello, World!', {
@@ -115,6 +126,8 @@ class Game extends phaser_minExports.Scene {
         this.input.once('pointerdown', () => {
             this.scene.start('GameOver');
         });
+    }
+    update(time, delta) {
     }
 }
 
@@ -192,9 +205,7 @@ class MainMenu extends phaser_minExports.Scene {
         });
     }
     create() {
-        this.gray_background = this.add.sprite(0, 0, "gray_background");
-        this.gray_background.x = 1920 / 2;
-        this.gray_background.y = 1080 / 2;
+        this.gray_background = this.add.tileSprite(1920, 540, 3840, 1080, "gray_background");
         this.logo = this.add.image(512, 300, 'logo');
         this.title = this.add.text(512, 460, 'Main Menu', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
@@ -204,6 +215,9 @@ class MainMenu extends phaser_minExports.Scene {
         this.input.once('pointerdown', () => {
             this.scene.start('Game');
         });
+    }
+    update() {
+        this.gray_background.tilePositionX += 5;
     }
 }
 
@@ -235,6 +249,7 @@ class Preloader extends phaser_minExports.Scene {
         this.load.setPath('assets');
         this.load.image('logo', 'logo.png');
         this.load.image('gray_background', 'gray_background.jpg');
+        this.load.image('doge', 'doge.png');
     }
     create() {
         //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
@@ -261,6 +276,13 @@ const config = {
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { x: 0, y: 3000 },
+            debug: false
+        }
     },
     scene: [
         Boot,
