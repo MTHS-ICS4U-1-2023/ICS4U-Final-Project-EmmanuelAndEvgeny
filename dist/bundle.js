@@ -191,7 +191,7 @@ class MainMenu extends phaser_minExports.Scene {
             writable: true,
             value: void 0
         });
-        Object.defineProperty(this, "logo", {
+        Object.defineProperty(this, "playButton", {
             enumerable: true,
             configurable: true,
             writable: true,
@@ -206,6 +206,7 @@ class MainMenu extends phaser_minExports.Scene {
     }
     create() {
         this.gray_background = this.add.tileSprite(1920, 540, 3840, 1080, "gray_background");
+<<<<<<< HEAD
         this.logo = this.add.image(512, 300, 'logo');
         this.title = this.add.text(512, 460, 'Main Menu', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
@@ -215,6 +216,17 @@ class MainMenu extends phaser_minExports.Scene {
         this.input.once('pointerdown', () => {
             this.scene.start('Game');
         });
+=======
+        this.title = this.add.image(1920 / 2 + 50, 1080 / 2 - 220, "title").setScale(3);
+        this.playButton = this.add
+            .sprite(1920 / 2 + 300, 1080 / 2 + 250, "playButton")
+            .setScale(1);
+        this.playButton.setInteractive({ useHandCursor: true });
+        this.playButton.on("pointerdown", () => this.scene.start("Game"));
+    }
+    update() {
+        this.gray_background.tilePositionX += 3;
+>>>>>>> d7b45e8 (ALMOST DONE WITH MAIN MENU)
     }
     update() {
         this.gray_background.tilePositionX += 5;
@@ -247,9 +259,13 @@ class Preloader extends phaser_minExports.Scene {
     preload() {
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
-        this.load.image('logo', 'logo.png');
+        this.load.image('playButton', 'playButton.png');
         this.load.image('gray_background', 'gray_background.jpg');
+<<<<<<< HEAD
         this.load.image('doge', 'doge.png');
+=======
+        this.load.image('title', 'title.png');
+>>>>>>> d7b45e8 (ALMOST DONE WITH MAIN MENU)
     }
     create() {
         //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.

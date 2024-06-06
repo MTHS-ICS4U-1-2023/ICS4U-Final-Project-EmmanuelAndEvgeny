@@ -10,7 +10,7 @@ import { Scene, GameObjects } from 'phaser';
 export class MainMenu extends Scene
 {
     gray_background: GameObjects.Image;
-    logo: GameObjects.Image;
+    playButton: GameObjects.Image;
     title: GameObjects.Text;
 
     constructor ()
@@ -28,21 +28,18 @@ export class MainMenu extends Scene
             "gray_background"
           )
 
-        this.logo = this.add.image(512, 300, 'logo');
+        this.title = this.add.image(1920 / 2 + 50, 1080 / 2 - 220, "title").setScale(3)
 
-        this.title = this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5);
-
-        this.input.once('pointerdown', () => {
-
-            this.scene.start('Game');
-
-        });
+        this.playButton = this.add
+          .sprite(1920 / 2 + 300, 1080 / 2 + 250, "playButton")
+          .setScale(1)
+        this.playButton.setInteractive({ useHandCursor: true })
+        this.playButton.on("pointerdown", () =>
+          this.scene.start("Game")
+        )
     }
+
     update(): void {
-        this.gray_background.tilePositionX += 5
+        this.gray_background.tilePositionX += 3
     }
 }
