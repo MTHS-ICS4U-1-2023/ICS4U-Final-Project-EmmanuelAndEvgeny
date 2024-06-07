@@ -11,6 +11,7 @@ export class MainMenu extends Scene
 {
     gray_background: GameObjects.Image;
     playButton: GameObjects.Image;
+    controlsButton: GameObjects.Image;
     title: GameObjects.Text;
 
     constructor ()
@@ -36,6 +37,14 @@ export class MainMenu extends Scene
         this.playButton.setInteractive({ useHandCursor: true })
         this.playButton.on("pointerdown", () =>
           this.scene.start("Game")
+        )
+
+        this.controlsButton = this.add
+          .sprite(1920 / 2 - 300, 1080 / 2 + 250, "controlsButton")
+          .setScale(1.2)
+        this.controlsButton.setInteractive({ useHandCursor: true })
+        this.controlsButton.on("pointerdown", () =>
+          this.scene.start("Controls")
         )
     }
 
