@@ -7,14 +7,14 @@
 
 import { Scene } from 'phaser';
 
-export class GameOver extends Scene
+export class Controls extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
     gameover_text : Phaser.GameObjects.Text;
 
     constructor ()
     {
-        super('GameOver');
+        super('Controls');
     }
 
     create ()

@@ -66,7 +66,7 @@ class Boot extends phaser_minExports.Scene {
     preload() {
         //  The Boot Scene is typically used to load in any assets you require for your Preloader, such as a game logo or background.
         //  The smaller the file size of the assets, the better, as the Boot Scene itself has no preloader.
-        this.load.image('background', 'assets/bg.png');
+        this.load.image('background', 'assets/Doge_and_Floppa.jpg');
     }
     create() {
         this.scene.start('Preloader');
@@ -83,12 +83,6 @@ class Game extends phaser_minExports.Scene {
     constructor() {
         super('Game');
         Object.defineProperty(this, "camera", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
-        Object.defineProperty(this, "background", {
             enumerable: true,
             configurable: true,
             writable: true,
@@ -115,8 +109,6 @@ class Game extends phaser_minExports.Scene {
         this.player = this.physics.add.sprite(500, 500, "doge");
         this.player.body.collideWorldBounds = true;
         this.player.setSize(0.5, 0.5);
-        this.background = this.add.image(512, 384, 'background');
-        this.background.setAlpha(0.5);
         this.msg_text = this.add.text(512, 384, 'Hello, World!', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
@@ -146,12 +138,6 @@ class GameOver extends phaser_minExports.Scene {
             writable: true,
             value: void 0
         });
-        Object.defineProperty(this, "background", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: void 0
-        });
         Object.defineProperty(this, "gameover_text", {
             enumerable: true,
             configurable: true,
@@ -162,8 +148,6 @@ class GameOver extends phaser_minExports.Scene {
     create() {
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0xff0000);
-        this.background = this.add.image(512, 384, 'background');
-        this.background.setAlpha(0.5);
         this.gameover_text = this.add.text(512, 384, 'Game Over', {
             fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
@@ -191,7 +175,13 @@ class MainMenu extends phaser_minExports.Scene {
             writable: true,
             value: void 0
         });
-        Object.defineProperty(this, "logo", {
+        Object.defineProperty(this, "playButton", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "controlsButton", {
             enumerable: true,
             configurable: true,
             writable: true,
@@ -206,18 +196,57 @@ class MainMenu extends phaser_minExports.Scene {
     }
     create() {
         this.gray_background = this.add.tileSprite(1920, 540, 3840, 1080, "gray_background");
-        this.logo = this.add.image(512, 300, 'logo');
-        this.title = this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setOrigin(0.5);
-        this.input.once('pointerdown', () => {
-            this.scene.start('Game');
-        });
+        this.title = this.add.image(1920 / 2 + 50, 1080 / 2 - 220, "title").setScale(3);
+        this.playButton = this.add
+            .sprite(1920 / 2 + 300, 1080 / 2 + 250, "playButton")
+            .setScale(1);
+        this.playButton.setInteractive({ useHandCursor: true });
+        this.playButton.on("pointerdown", () => this.scene.start("Game"));
+        this.controlsButton = this.add
+            .sprite(1920 / 2 - 300, 1080 / 2 + 250, "controlsButton")
+            .setScale(1.2);
+        this.controlsButton.setInteractive({ useHandCursor: true });
+        this.controlsButton.on("pointerdown", () => this.scene.start("Controls"));
     }
     update() {
-        this.gray_background.tilePositionX += 5;
+        this.gray_background.tilePositionX += 3;
+    }
+}
+
+/**
+  * This is the GameOver.ts code that runs
+  * By: Evgeny Vovk
+  * Version: 1.0
+  * Since: 2024-05-21
+  */
+class Controls extends phaser_minExports.Scene {
+    constructor() {
+        super('Controls');
+        Object.defineProperty(this, "camera", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "gameover_text", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+    }
+    create() {
+        this.camera = this.cameras.main;
+        this.camera.setBackgroundColor(0xff0000);
+        this.gameover_text = this.add.text(512, 384, 'Game Over', {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        });
+        this.gameover_text.setOrigin(0.5);
+        this.input.once('pointerdown', () => {
+            this.scene.start('MainMenu');
+        });
     }
 }
 
@@ -233,22 +262,24 @@ class Preloader extends phaser_minExports.Scene {
     }
     init() {
         //  We loaded this image in our Boot Scene, so we can display it here
-        this.add.image(512, 384, 'background');
+        this.background = this.add.image(1920 / 2, 1080 / 2, "background");
         //  A simple progress bar. This is the outline of the bar.
-        this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
+        this.add.rectangle(1920 / 2, 1080 / 2, 800, 32).setStrokeStyle(1, 0xffffff);
         //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
-        const bar = this.add.rectangle(512 - 230, 384, 4, 28, 0xffffff);
+        const bar = this.add.rectangle(1920 / 2 - 400, 1080 / 2, 4, 28, 0xffffff);
         //  Use the 'progress' event emitted by the LoaderPlugin to update the loading bar
         this.load.on('progress', (progress) => {
             //  Update the progress bar (our bar is 464px wide, so 100% = 464px)
-            bar.width = 4 + (460 * progress);
+            bar.width = (800 * progress);
         });
     }
     preload() {
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
-        this.load.image('logo', 'logo.png');
+        this.load.image('playButton', 'playButton.png');
+        this.load.image('controlsButton', 'controlsButton.png');
         this.load.image('gray_background', 'gray_background.jpg');
+        this.load.image('title', 'title.png');
         this.load.image('doge', 'doge.png');
     }
     create() {
@@ -289,7 +320,8 @@ const config = {
         Preloader,
         MainMenu,
         Game,
-        GameOver
+        GameOver,
+        Controls
     ]
 };
 var main = new phaser_minExports.Game(config);
