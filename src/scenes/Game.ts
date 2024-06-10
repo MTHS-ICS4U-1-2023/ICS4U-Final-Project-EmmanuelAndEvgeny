@@ -10,6 +10,7 @@ import { Scene, GameObjects } from 'phaser';
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
+    blue_background: GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
     doge: GameObjects.Image;
 
@@ -20,6 +21,14 @@ export class Game extends Scene
 
     create (data)
     {
+        this.blue_background = this.add.tileSprite(
+            1920,
+            540,
+            3840,
+            1080,
+            "blue_background"
+        )
+
         this.game.sound.stopAll()
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
@@ -27,14 +36,6 @@ export class Game extends Scene
         //create doge
         this.player = this.physics.add.sprite(500, 500, "doge")
         this.player.body.collideWorldBounds = true
-        this.player.setSize(0.5, 0.5)
-
-        this.msg_text = this.add.text(512, 384, 'Hello, World!', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        });
-        this.msg_text.setOrigin(0.5);
 
         this.input.once('pointerdown', () => {
 
@@ -44,6 +45,19 @@ export class Game extends Scene
     }
 
     update(time, delta): void {
-        
+        const keySpace = this.input.keyboard.addKey("SPACE")
+
+        this.blue_background.tilePositionX += 6
+
+        if (keySpace.isDown === true) {
+            Boolean isJumping = true;
+            this.player.body.velocity.y = -300
+        }
+        if (isJumping == true) {
+            this.spinningSprite.rotation += 0.20;
+            if (this.player.angle == 0) {
+                isJumping = false;
+            }
+        }
     }
 }

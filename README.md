@@ -12,3 +12,7 @@
 - after running npm run build then change "dist" directory to "docs"
 - commit repo
 - got Setting, Pages and select "/main /docs" <- you only have to do this once
+
+## Game Website
+
+----->  https://evgeny-vovk.github.io/ICS4U-Final-Project-EmmanuelAndEvgeny  <-----

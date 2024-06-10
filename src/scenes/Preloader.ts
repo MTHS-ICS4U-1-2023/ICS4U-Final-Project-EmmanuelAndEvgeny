@@ -42,9 +42,10 @@ export class Preloader extends Scene
         this.load.image('playButton', 'playButton.png');
         this.load.image('controlsButton', 'controlsButton.png');
         this.load.image('gray_background', 'gray_background.jpg');
+        this.load.image('blue_background', 'blue_background.jpg');
         this.load.image('title', 'title.png');
 
-        this.load.image('doge', 'doge.png');
+        this.load.image('doge', 'doge.jpg');
     }
 
     create ()

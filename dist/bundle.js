@@ -88,6 +88,12 @@ class Game extends phaser_minExports.Scene {
             writable: true,
             value: void 0
         });
+        Object.defineProperty(this, "blue_background", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         Object.defineProperty(this, "msg_text", {
             enumerable: true,
             configurable: true,
@@ -102,24 +108,31 @@ class Game extends phaser_minExports.Scene {
         });
     }
     create(data) {
+        this.blue_background = this.add.tileSprite(1920, 540, 3840, 1080, "blue_background");
         this.game.sound.stopAll();
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
         //create doge
         this.player = this.physics.add.sprite(500, 500, "doge");
         this.player.body.collideWorldBounds = true;
-        this.player.setSize(0.5, 0.5);
-        this.msg_text = this.add.text(512, 384, 'Hello, World!', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        });
-        this.msg_text.setOrigin(0.5);
         this.input.once('pointerdown', () => {
             this.scene.start('GameOver');
         });
     }
     update(time, delta) {
+        const keySpace = this.input.keyboard.addKey("SPACE");
+        this.blue_background.tilePositionX += 6;
+        if (keySpace.isDown === true) {
+            Boolean;
+            isJumping = true;
+            this.player.body.velocity.y = -300;
+        }
+        if (isJumping == true) {
+            this.spinningSprite.rotation += 0.20;
+            if (this.player.angle == 0) {
+                isJumping = false;
+            }
+        }
     }
 }
 
@@ -279,8 +292,9 @@ class Preloader extends phaser_minExports.Scene {
         this.load.image('playButton', 'playButton.png');
         this.load.image('controlsButton', 'controlsButton.png');
         this.load.image('gray_background', 'gray_background.jpg');
+        this.load.image('blue_background', 'blue_background.jpg');
         this.load.image('title', 'title.png');
-        this.load.image('doge', 'doge.png');
+        this.load.image('doge', 'doge.jpg');
     }
     create() {
         //  When all the assets have loaded, it's often worth creating global objects here that the rest of the game can use.
