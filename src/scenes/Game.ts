@@ -49,15 +49,5 @@ export class Game extends Scene
 
         this.blue_background.tilePositionX += 6
 
-        if (keySpace.isDown === true) {
-            Boolean isJumping = true;
-            this.player.body.velocity.y = -300
-        }
-        if (isJumping == true) {
-            this.spinningSprite.rotation += 0.20;
-            if (this.player.angle == 0) {
-                isJumping = false;
-            }
-        }
     }
 }
