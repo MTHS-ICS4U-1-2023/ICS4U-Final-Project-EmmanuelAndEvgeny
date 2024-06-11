@@ -13,6 +13,7 @@ export class Game extends Scene
     blue_background: GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
     doge: GameObjects.Image;
+    public isJumping: boolean = false;
 
     constructor ()
     {
@@ -50,13 +51,15 @@ export class Game extends Scene
         this.blue_background.tilePositionX += 6
 
         if (keySpace.isDown === true) {
-            Boolean isJumping = true;
+            this.isJumping = true;
             this.player.body.velocity.y = -300
         }
-        if (isJumping == true) {
-            this.spinningSprite.rotation += 0.20;
+        if (this.isJumping == true) {
+            this.player.rotation += 0.20;
             if (this.player.angle == 0) {
-                isJumping = false;
+                this.isJumping = false;
+                this.player.angle = 0
+                this.player.rotation = 0;
             }
         }
     }

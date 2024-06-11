@@ -106,6 +106,12 @@ class Game extends phaser_minExports.Scene {
             writable: true,
             value: void 0
         });
+        Object.defineProperty(this, "isJumping", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
     }
     create(data) {
         this.blue_background = this.add.tileSprite(1920, 540, 3840, 1080, "blue_background");
@@ -123,14 +129,15 @@ class Game extends phaser_minExports.Scene {
         const keySpace = this.input.keyboard.addKey("SPACE");
         this.blue_background.tilePositionX += 6;
         if (keySpace.isDown === true) {
-            Boolean;
-            isJumping = true;
+            this.isJumping = true;
             this.player.body.velocity.y = -300;
         }
-        if (isJumping == true) {
-            this.spinningSprite.rotation += 0.20;
+        if (this.isJumping == true) {
+            this.player.rotation += 0.20;
             if (this.player.angle == 0) {
-                isJumping = false;
+                this.isJumping = false;
+                this.player.angle = 0;
+                this.player.rotation = 0;
             }
         }
     }
