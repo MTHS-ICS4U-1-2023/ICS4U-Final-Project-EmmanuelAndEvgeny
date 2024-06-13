@@ -1,6 +1,6 @@
 /**
   * This is the preloader.ts code that runs
-  * By: Evgeny Vovk & Emmanuel FN
+  * By: Evgeny Vovk
   * Version: 1.0
   * Since: 2024-05-21
   */
