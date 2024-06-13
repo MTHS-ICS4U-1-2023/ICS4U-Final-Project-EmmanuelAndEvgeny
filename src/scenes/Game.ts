@@ -14,6 +14,7 @@ export class Game extends Scene
     msg_text : Phaser.GameObjects.Text;
     doge: GameObjects.Image;
     public isJumping: boolean = false;
+    public canJump: boolean = true;
 
     constructor ()
     {
@@ -47,19 +48,24 @@ export class Game extends Scene
 
     update(time, delta): void {
         const keySpace = this.input.keyboard.addKey("SPACE")
+        const keyW = this.input.keyboard.addKey("W")
+        const keyArrow = this.input.keyboard.addKey("UP")
 
-        this.blue_background.tilePositionX += 6
+        this.blue_background.tilePositionX += 9
 
-        if (keySpace.isDown === true) {
-            this.isJumping = true;
-            this.player.body.velocity.y = -300
+        if (keySpace.isDown === true || keyW.isDown === true || keyArrow.isDown === true) {
+            if (this.canJump == true) {
+                this.isJumping = true;
+                this.canJump = false;
+                this.player.body.velocity.y = -1300
+            }
         }
         if (this.isJumping == true) {
             this.player.rotation += 0.20;
-            if (this.player.angle == 0) {
+            if (this.player.body.y > 900) {
                 this.isJumping = false;
+                this.canJump = true;
                 this.player.angle = 0
-                this.player.rotation = 0;
             }
         }
     }
