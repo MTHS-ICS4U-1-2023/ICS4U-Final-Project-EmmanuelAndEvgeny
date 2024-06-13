@@ -1,6 +1,6 @@
 /**
   * This is the main code that runs
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk & Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-21
   */
