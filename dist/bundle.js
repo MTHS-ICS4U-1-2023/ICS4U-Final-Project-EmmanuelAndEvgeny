@@ -55,7 +55,7 @@ var phaser_min$1 = /*@__PURE__*/getDefaultExportFromCjs(phaser_minExports);
 
 /**
   * This is the Boot.ts code
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk & Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-20
   */
@@ -145,7 +145,7 @@ class Game extends phaser_minExports.Scene {
 
 /**
   * This is the GameOver.ts code that runs
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk & Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-21
   */
@@ -182,7 +182,7 @@ class GameOver extends phaser_minExports.Scene {
 
 /**
   * This is the MainMenu.ts code that runs
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-21
   */
@@ -235,7 +235,7 @@ class MainMenu extends phaser_minExports.Scene {
 
 /**
   * This is the GameOver.ts code that runs
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk & Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-21
   */
@@ -272,7 +272,7 @@ class Controls extends phaser_minExports.Scene {
 
 /**
   * This is the preloader.ts code that runs
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk & Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-21
   */
@@ -313,7 +313,7 @@ class Preloader extends phaser_minExports.Scene {
 
 /**
   * This is the main code that runs
-  * By: Evgeny Vovk
+  * By: Evgeny Vovk & Emmanuel FN
   * Version: 1.0
   * Since: 2024-05-21
   */
