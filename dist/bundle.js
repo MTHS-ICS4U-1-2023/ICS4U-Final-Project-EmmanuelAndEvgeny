@@ -112,6 +112,12 @@ class Game extends phaser_minExports.Scene {
             writable: true,
             value: false
         });
+        Object.defineProperty(this, "canJump", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: true
+        });
     }
     create(data) {
         this.blue_background = this.add.tileSprite(1920, 540, 3840, 1080, "blue_background");
@@ -127,17 +133,22 @@ class Game extends phaser_minExports.Scene {
     }
     update(time, delta) {
         const keySpace = this.input.keyboard.addKey("SPACE");
-        this.blue_background.tilePositionX += 6;
-        if (keySpace.isDown === true) {
-            this.isJumping = true;
-            this.player.body.velocity.y = -300;
+        const keyW = this.input.keyboard.addKey("W");
+        const keyArrow = this.input.keyboard.addKey("UP");
+        this.blue_background.tilePositionX += 9;
+        if (keySpace.isDown === true || keyW.isDown === true || keyArrow.isDown === true) {
+            if (this.canJump == true) {
+                this.isJumping = true;
+                this.canJump = false;
+                this.player.body.velocity.y = -1300;
+            }
         }
         if (this.isJumping == true) {
             this.player.rotation += 0.20;
-            if (this.player.angle == 0) {
+            if (this.player.body.y > 900) {
                 this.isJumping = false;
+                this.canJump = true;
                 this.player.angle = 0;
-                this.player.rotation = 0;
             }
         }
     }
